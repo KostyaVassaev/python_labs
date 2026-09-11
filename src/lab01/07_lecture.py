@@ -1,4 +1,4 @@
-st = input()
+st = input("in: ")
 text = ""
 
 wasUpper = False
@@ -17,4 +17,4 @@ while i < len(st):
     if st[i] == ".": break
     i += betw
 
-print(text)
+print("out:", text)
