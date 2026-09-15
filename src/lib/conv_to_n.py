@@ -4,5 +4,6 @@ def to_n(a, sys):
     alphabet = "0123456789abcdefghijklmnopqrstuvwxyz"
     res = ""
     while a > 0:
-        res += 
+        res += alphabet[a % sys]
         a //= sys
+    return res
