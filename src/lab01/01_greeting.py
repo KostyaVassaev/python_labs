@@ -5,6 +5,6 @@ while not name or " " in name:
 old = "-1"
 while int(old) < 0:
     old = input("Возраст: ").replace(",", ".")
-    if old < 0 or not old.isdigit() or "." in old:
-        print("Возраст не введён или введён некорректно, введите возраст (натуальное число или ноль)!")
+    if not (200 >= int(old) >= 0) or not old.isdigit() or "." in old:
+        print("Возраст не введён или введён некорректно, введите возраст (натуальное число или ноль, не больше 200)!")
 print(f"Привет, {name}! Через год тебе будет {int(old) + 1}.")
