@@ -1,4 +1,7 @@
-n = int(input("count: "))
+s = "."
+while not s.isdigit():
+    s = input("count of students: ")
+n = int(s)
 cnt_full, cnt_correspondence = 0, 0
 
 for i in range(n):
