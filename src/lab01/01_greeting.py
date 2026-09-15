@@ -1,7 +1,7 @@
 name = ""
-while not name:
+while not name or " " in name:
     name = input("Имя: ")
-    if not name: print("Имя не введено, введите имя!")
+    if not name or " " in name: print("Имя не введено или введено некорректно, введите имя!")
 old = -1
 while old < 0:
     old = int(input("Возраст: "))
