@@ -21,6 +21,22 @@
 
 ## Задание 2 - `matrix.py`
 
+### Функция `isRectangular`
+
+Используется для определения "прямоугольности" матрицы, возвращает `True/False`  
+
+<details>
+<summary>Код:</summary>
+```py
+def isRectangular(mat: list[list]) -> bool:
+    if not mat: return True
+    row_ln = len(mat[0])
+    for row in mat:
+        if len(row) != row_ln: return False
+    return True
+```
+</details>
+
 ### Функция `transpose`
 
 Выполнение тест-кейсов:  
