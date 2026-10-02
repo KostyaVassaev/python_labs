@@ -26,7 +26,7 @@ def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
 def unique_sorted(nums: list[float | int]) -> list[float | int]:
     if len(nums) == 0: return nums
 
-    nums = list(set(nums)) #убираем повторяющиеся элементы
+    nums = list(set(nums))
 
     n = len(nums)
     for i in range(n):
