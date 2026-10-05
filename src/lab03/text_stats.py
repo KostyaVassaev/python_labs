@@ -1,15 +1,17 @@
 import sys
-import os
+from pathlib import Path
 
-sys.path.append(os.path.abspath("../lib"))
+current_dir = Path(__file__).resolve().parent
+project_root = current_dir.parent
+lib_path = project_root / "lib"
+sys.path.append(str(lib_path))
 
 from text import *
+from inp import *
 
-inp = ""
-while inp != 'y' and inp != 'n':
-    inp = input('Ввод из файла или в строке? [y/n]: ').lower()
+file_flag = agreement('Ввод из файла или в строке?')
 
-if inp == 'y':
+if file_flag:
     file_name = input('Введите полный путь к файлу: ').strip('\'" ')
     with open(file_name, 'r', encoding='utf-8') as f:
         st = f.read()
@@ -24,11 +26,7 @@ top_5 = top_n(word_dict, 5)
 print(f"Всего слов: {len(words)}")
 print(f"Уникальных слов: {len(word_dict)}")
 
-inp = ""
-while inp != 'y' and inp != 'n':
-    inp = input('Вывод топа в виде таблицы? [y/n]: ').lower()
-
-table_flag = True if inp == 'y' else False #вывод в виде таблицы или нет
+table_flag = agreement('Вывод топа в виде таблицы?') #вывод в виде таблицы или нет
 
 print('\nТоп-5:')
 if table_flag:
