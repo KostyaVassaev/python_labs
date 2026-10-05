@@ -23,7 +23,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
     return text.strip()
 ```
 
-Выполнение тест-кейсов:
+**Выполнение тест-кейсов:**
 ![normalize_01](../../images/lab03/A_01_01.png)
 
 ### Функция `tokenize`
@@ -34,11 +34,13 @@ def tokenize(text: str) -> list[str]:
     pattern = r'\w+(?:-\w+)*'
     return re.findall(pattern, text)
 ```
-re.findall — извлекает все совпадения из текста и возвращает их в виде списка строк
-\w+ — находит одну или более букв, цифр или символов подчёркивания;
-(?:-\w+)* — это незапоминающая группа (?:...), которая ищет дефис, за которым сразу следует еще одна группа \w+. Знак * означает, что таких групп в слове может быть ноль или больше (например, для слов вроде кое-где-нибудь)
+re.findall - извлекает все совпадения из текста и возвращает их в виде списка строк
 
-Выполнение тест-кейсов:
+\w+ - находит одну или более букв, цифр или символов подчёркивания;
+
+(?:-\w+)* - это незапоминающая группа (?:...), которая ищет дефис, за которым сразу следует еще одна группа \w+. Знак * означает, что таких групп в слове может быть ноль или больше (например, для слов вроде кое-где-нибудь)
+
+**Выполнение тест-кейсов:**
 ![tokenize_01](../../images/lab03/A_02_01.png)
 
 ### Функции `count_freq` и `top_n`
@@ -66,8 +68,8 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
 
 freq.items() возвращает пары словаря в виде кортежей, т.е. dict[str, int] -> list[tuple[str, int]]
 
-Выполнение тест-кейсов:
-![A_03_01](../../images/lab03/A_03_01.png)
+**Выполнение тест-кейсов:**
+![task A_03_01](../../images/lab03/A_03_01.png)
 
 ## Задание B - `src/lab03/text_stats.py`
 
@@ -75,29 +77,60 @@ freq.items() возвращает пары словаря в виде корте
 
 Реализован вывод в формате таблицы для топ-5 по частоте слов.
 
-**Импорт функций из src/lib:**
+**Импорт функций из `src/lib`:**
 ```py
 import sys
-import os
+from pathlib import Path
 
-sys.path.append(os.path.abspath("../lib"))
+current_dir = Path(__file__).resolve().parent
+project_root = current_dir.parent
+lib_path = project_root / "lib"
+sys.path.append(str(lib_path))
 
 from text import *
+from inp import *
 ```
 
-**Выбор способа ввода:**
+**Выбор способа ввода через функцию:**
 ```py
-inp = ""
-while inp != 'y' and inp != 'n':
-    inp = input('Ввод из файла или в строке? [y/n]: ').lower()
+file_flag = agreement('Ввод из файла или в строке?')
 
-if inp == 'y':
-    file_name = input('Введите полный путь к файлу: ')
+if file_flag:
+    file_name = input('Введите полный путь к файлу: ').strip('\'" ')
     with open(file_name, 'r', encoding='utf-8') as f:
         st = f.read()
 
 else: st = input('Введите строку: ')
 ```
 
-Выполнение тест-кейсов:
-![tokenize_01](../../images/lab03/B_01_01.png)
+**Функция для выбора ввода (в `src/lib/inp.py`):**
+```py
+def agreement(question: str) -> bool:
+    inp = ""
+    while inp != 'y' and inp != 'n':
+        inp = input(f"{question} [y/n]: ").lower()
+
+    return True if inp == 'y' else False
+```
+
+**Выполнение тест-кейсов:**
+
+```normalize```
+
+![task B_01_01](../../images/lab03/B_01_01.png)
+![task B_01_02](../../images/lab03/B_01_02.png)
+
+```tokenize```
+
+![task B_02_01](../../images/lab03/B_02_01.png)
+![task B_02_02](../../images/lab03/B_02_02.png)
+![task B_02_03](../../images/lab03/B_02_03.png)
+
+```count_freq + top_n```
+
+![task B_03_01](../../images/lab03/B_03_01.png)
+![task B_03_02](../../images/lab03/B_03_02.png)
+
+```тай-брейк по слову при равной частоте```
+
+![task B_04_01](../../images/lab03/B_04_01.png)
