@@ -10,7 +10,7 @@ while inp != 'y' and inp != 'n':
     inp = input('Ввод из файла или в строке? [y/n]: ').lower()
 
 if inp == 'y':
-    file_name = input('Введите полный путь к файлу: ')
+    file_name = input('Введите полный путь к файлу: ').strip('\'" ')
     with open(file_name, 'r', encoding='utf-8') as f:
         st = f.read()
 
