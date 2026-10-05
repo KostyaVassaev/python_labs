@@ -134,4 +134,5 @@ def agreement(question: str) -> bool:
 ```
 
 Тест:
+
 ![task B_02_01](../../images/lab03/B_02_01.png)
