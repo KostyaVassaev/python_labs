@@ -25,8 +25,7 @@ def count_freq(tokens: list[str]) -> dict[str, int]:
     freq = {}
     for token in tokens:
         if type(token) != str: raise TypeError("only list of strings")
-        if token in freq: freq[token] = freq[token] + 1
-        else: freq[token] = 1
+        freq[token] = freq.get(token, 0) + 1
 
     return freq
 
