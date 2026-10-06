@@ -14,6 +14,8 @@ import re
 **Код:**
 ```py
 def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
+    if type(text) != str: raise TypeError("normalize works with strings only")
+
     if casefold: text = text.casefold()
     else: text = text.lower()
 
@@ -33,6 +35,8 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
 **Код:**
 ```py
 def tokenize(text: str) -> list[str]:
+    if type(text) != str: raise TypeError("tokenize works with strings only")
+
     pattern = r'\w+(?:-\w+)*'
     return re.findall(pattern, text)
 ```
@@ -51,10 +55,12 @@ def tokenize(text: str) -> list[str]:
 **Код `count_freq`:**
 ```py
 def count_freq(tokens: list[str]) -> dict[str, int]:
+    if type(tokens) != list: raise TypeError("count_freq works with lists only")
+
     freq = {}
     for token in tokens:
-        if token in freq: freq[token] = freq[token] + 1
-        else: freq[token] = 1
+        if type(token) != str: raise TypeError("only list of strings")
+        freq[token] = freq.get(token, 0) + 1
 
     return freq
 ```
