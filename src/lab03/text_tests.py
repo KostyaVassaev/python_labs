@@ -6,7 +6,7 @@ project_root = current_dir.parent
 lib_path = project_root / "lib"
 sys.path.append(str(lib_path))
 
-from text import *
+from lib.text import *
 
 # normalize
 #print(r'"ПрИвЕт\nМИр\t" ->', f'"{normalize("ПрИвЕт\nМИр\t")}"')

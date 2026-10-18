@@ -6,8 +6,8 @@ project_root = current_dir.parent
 lib_path = project_root / "lib"
 sys.path.append(str(lib_path))
 
-from text import *
-from inp import *
+from lib.text import *
+from lib.inp import *
 
 file_flag = agreement('Ввод из файла или в строке?')
 
