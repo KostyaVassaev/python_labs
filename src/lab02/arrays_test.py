@@ -1,9 +1,9 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath("../lib"))
+sys.path.append(os.path.abspath(".."))
 
-from arrays import *
+from lib.arrays import *
 
 #print([3, -1, 5, 5, 0], "->", min_max([3, -1, 5, 5, 0]))
 #print([42], "->", min_max([42]))

@@ -1,9 +1,9 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath("../lib"))
+sys.path.append(os.path.abspath(".."))
 
-from matrix import *
+from lib.matrix import *
 
 #print([[1, 2, 3]], "->", transpose([[1, 2, 3]]))
 #print([[1], [2], [3]], "->", transpose([[1], [2], [3]]))

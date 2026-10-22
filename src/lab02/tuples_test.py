@@ -1,9 +1,9 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath("../lib"))
+sys.path.append(os.path.abspath(".."))
 
-from tuples import *
+from lib.tuples import *
 
 #print(("Иванов Иван Иванович", "BIVT-25", 4.6), "->", format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
 #print(("Петров Пётр", "IKBO-12", 5.0), "->", format_record(("Петров Пётр", "IKBO-12", 5.0)))
