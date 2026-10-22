@@ -2,9 +2,9 @@ import sys
 from pathlib import Path
 
 current_dir = Path(__file__).resolve().parent
-project_root = current_dir.parent
-lib_path = project_root / "lib"
-sys.path.append(str(lib_path))
+project_root = current_dir.parent.parent
+src_path = project_root / "src"
+sys.path.append(str(src_path))
 
 from lib.text import *
 from lib.inp import *
