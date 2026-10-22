@@ -30,14 +30,8 @@ table_flag = agreement('Вывод топа в виде таблицы?') #вы�
 
 print('\nТоп-5:')
 if table_flag:
-    mx_ln = 0
-    for item in top_5:
-        ln = len(item[0])
-        if ln > mx_ln: mx_ln = ln
-    
-    print(f"{'слово':<{mx_ln}} | {'частота'}")
-    print("-" * (12 + mx_ln))
-    for word, cnt in top_5: print(f"{word:<{mx_ln}} | {cnt}")
+    from lib.outputting import table_print
+    table_print(top_5, ("слово", "частота"))
 
 else:
     for word, cnt in top_5: print(f"{word}: {cnt}")
