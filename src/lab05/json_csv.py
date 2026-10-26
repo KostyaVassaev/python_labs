@@ -14,12 +14,17 @@ def json_to_csv(json_path: str | Path, csv_path: str | Path) -> None:
     json_path = Path(json_path)
     csv_path = Path(csv_path)
 
+    if csv_path.suffix() != ".csv": raise ValueError("Invalid CSV-file extension.")
+    if json_path.suffix() != ".json": raise ValueError("Invalid JSON-file extension.")
+
     try:
         with open(json_path, mode="r", encoding="utf-8") as json_fl:
             data = json.load(json_fl)
     except Exception as e:
         print(f"Ошибка при чтении JSON-файла: {e}")
         return
+
+    if not data: raise ValueError("Empty JSON-file.")
     
     ensure_parent_dir(csv_path)
 
@@ -35,6 +40,9 @@ def csv_to_json(csv_path: str | Path, json_path: str | Path) -> None:
     csv_path = Path(csv_path)
     json_path = Path(json_path)
 
+    if csv_path.suffix() != ".csv": raise ValueError("Invalid CSV-file extension.")
+    if json_path.suffix() != ".json": raise ValueError("Invalid JSON-file extension.")
+
     try:
         with open(csv_path, mode="r", encoding="utf-8") as csv_fl:
             reader = csv.DictReader(csv_fl)
@@ -42,6 +50,8 @@ def csv_to_json(csv_path: str | Path, json_path: str | Path) -> None:
     except Exception as e:
         print(f"Ошибка при чтении CSV-файла: {e}")
         return
+
+    if not data: raise ValueError("Empty CSV-file.")
     
     ensure_parent_dir(json_path)
 
