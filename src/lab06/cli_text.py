@@ -14,11 +14,11 @@ parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers(dest="command", required=True, help="Доступные подкоманды")
 
 parser_stats = subparsers.add_parser("stats", help="Анализ частот слов в тексте")
-parser_stats.add_argument("--input", required=True, dest="input_file", type=str, help="Путь к исходному файлу")
+parser_stats.add_argument("--input", dest="input_file", required=True, type=str, help="Путь к исходному файлу")
 parser_stats.add_argument("--top", type=int, default=5, help="Длина списка самых частых слов")
 
 parser_cat = subparsers.add_parser("cat", help="Вывод содержимого файла")
-parser_cat.add_argument("--input", required=True, dest="input_file", type=str, help="Путь к исходному TXT-файлу")
+parser_cat.add_argument("--input", dest="input_file", required=True, type=str, help="Путь к исходному TXT-файлу")
 parser_cat.add_argument("-n", action="store_true", help="Включить нумерацию строк")
 
 args = parser.parse_args()
