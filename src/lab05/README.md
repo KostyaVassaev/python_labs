@@ -31,7 +31,7 @@
 
 **Тест 3**
 
-Пустой csv-файл
+Пустой csv-файл ![empty.csv](../../data/samples/empty.csv)
 
 Запуск и результат:
 
@@ -39,7 +39,7 @@
 
 **Тест 4**
 
-Пустой json-файл
+Пустой json-файл ![empty.json](../../data/samples/empty.json)
 
 Запуск и результат:
 
@@ -47,7 +47,7 @@
 
 **Тест 5**
 
-csv-файл только с заголовком
+csv-файл только с заголовком  ![only_header.csv](../../data/samples/only_header.csv)
 
 Запуск и результат:
 
@@ -59,7 +59,7 @@ csv-файл только с заголовком
 
 Запуск и результат:
 
-![empty_csv](../../images/lab05//csv_does_not_exist.png)
+![empty_csv](../../images/lab05/csv_does_not_exist.png)
 
 ## Задание B — CSV → XLSX
 
@@ -97,7 +97,8 @@ for col in ws.columns:
 ```
 
 `col_letter = get_column_letter(col[0].column)` - получает букву колонки
-`ws.column_dimensions[col_letter].width = max(max_len + 1, 8)` - устанавливает ширину: максимум из длины текста (+ запас) или 8 по ТЗ
+
+`ws.column_dimensions[col_letter].width = max(max_len + 1, 8)` - устанавливает ширину: максимум из длины текста (+ запас) или 8 - минимальный размер по ТЗ
 
 ### Тест-кейсы
 
@@ -110,3 +111,21 @@ for col in ws.columns:
 ![run](../../images/lab05/csv_to_xlsx_cities.png)
 
 ![result](../../images/lab05/OUT_cities_xlsx.png)
+
+**Тест 2**
+
+`exmple1.csv` -> `example1.xlsx`
+
+Исходный файл:
+
+![example1.csv](../../data/samples/example1.csv)
+
+Запуск:
+
+![example1_csv_to_xlsx](../../images/lab05/csv_to_xlsx_example1.png)
+
+Результат:
+
+![result1.xlsx](../../data/out/result1.xlsx)
+
+![OUT_result1.xlsx](../../images/lab05/OUT_result1_xlsx.png)
