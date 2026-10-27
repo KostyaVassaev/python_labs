@@ -11,7 +11,7 @@ from lib.text import *
 from lib.outputting import table_print
 
 parser = argparse.ArgumentParser()
-subparsers = parser.add_subparsers(dest="command", required=True, help="Доступные подкоманды")
+subparsers = parser.add_subparsers(dest="cmd", required=True, help="Доступные подкоманды")
 
 parser_stats = subparsers.add_parser("stats", help="Анализ частот слов в тексте")
 parser_stats.add_argument("--input", dest="input_file", required=True, type=str, help="Путь к исходному файлу")
@@ -24,7 +24,7 @@ parser_cat.add_argument("-n", action="store_true", help="Включить нум
 args = parser.parse_args()
 
 try:
-    if args.command == "stats":
+    if args.cmd == "stats":
         with open(args.input_file, "r", encoding="utf-8") as fl:
             data = []
             with open(args.input_file, "r", encoding="utf-8") as fl:
@@ -38,7 +38,7 @@ try:
             print(f"\nТоп-{args.top}:")
             table_print(top_n(freq, args.top), ("слово", "частота"))
     
-    elif args.command == "cat":
+    elif args.cmd == "cat":
         if args.n:
             with open(args.input_file, "r", encoding="utf-8") as fl:
                 i = 0
