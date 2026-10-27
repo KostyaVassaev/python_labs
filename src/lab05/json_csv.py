@@ -2,13 +2,6 @@ from pathlib import Path
 import sys
 import csv, json
 
-current_dir = Path(__file__).resolve().parent
-project_root = current_dir.parent.parent
-src_path = project_root / "src"
-data_path = project_root / "data"
-sys.path.append(str(src_path))
-sys.path.append(str(data_path))
-
 from lib.pathwork import ensure_parent_dir
 
 def json_to_csv(json_path: str | Path, csv_path: str | Path) -> None:
