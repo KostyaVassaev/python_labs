@@ -61,12 +61,6 @@ csv-файл только с заголовком  ![only_header.csv](../../data
 
 ![empty_csv](../../images/lab05/csv_does_not_exist.png)
 
-**Тест 7**
-
-`phones.json` -> `csv.json`
-
-Запуск 
-
 ## Задание B — CSV → XLSX
 
 Для работы с `XLSX` используется `openpyxl`
