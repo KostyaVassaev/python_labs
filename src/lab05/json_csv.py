@@ -1,7 +1,6 @@
 from pathlib import Path
 import sys
-import csv
-import json
+import csv, json
 
 current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parent.parent

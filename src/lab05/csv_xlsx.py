@@ -36,10 +36,8 @@ def csv_to_xlsx(csv_path: str | Path, xlsx_path: str | Path) -> None:
 
     for col in ws.columns:
         max_len = max(len(str(cell.value or '')) for cell in col)
-        # Правильно получаем букву колонки (например, 'A', 'B'...)
-        col_letter = get_column_letter(col[0].column) 
-        # Устанавливаем ширину: максимум из длины текста (+ запас) или 8 по ТЗ
-        ws.column_dimensions[col_letter].width = max(max_len + 3, 8)
+        col_letter = get_column_letter(col[0].column)
+        ws.column_dimensions[col_letter].width = max(max_len + 1, 8)
 
     ensure_parent_dir(xlsx_path)
     wb.save(xlsx_path)
