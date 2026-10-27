@@ -9,6 +9,58 @@
 
 ### Тест-кейсы
 
+**Тест 1**
+
+`people.json` -> `people.csv`
+
+Запуск и результат:
+
+![run](../../images/lab05/json_to_csv_people.png)
+
+![result](../../images/lab05/OUT_people_csv.png)
+
+**Тест 2**
+
+`people.csv` -> `people.json`
+
+Запуск и результат:
+
+![run](../../images/lab05/csv_to_json_people.png)
+
+![result](../../images/lab05/OUT_people_json.png)
+
+**Тест 3**
+
+Пустой csv-файл
+
+Запуск и результат:
+
+![empty_csv](../../images/lab05/empty_csv.png)
+
+**Тест 4**
+
+Пустой json-файл
+
+Запуск и результат:
+
+![empty_csv](../../images/lab05/empty_json.png)
+
+**Тест 5**
+
+csv-файл только с заголовком
+
+Запуск и результат:
+
+![empty_csv](../../images/lab05/only_header_csv.png)
+
+**Тест 6**
+
+Не существующий csv-файл
+
+Запуск и результат:
+
+![empty_csv](../../images/lab05//csv_does_not_exist.png)
+
 ## Задание B — CSV → XLSX
 
 Для работы с `XLSX` используется `openpyxl`
@@ -48,3 +100,13 @@ for col in ws.columns:
 `ws.column_dimensions[col_letter].width = max(max_len + 1, 8)` - устанавливает ширину: максимум из длины текста (+ запас) или 8 по ТЗ
 
 ### Тест-кейсы
+
+**Тест 1**
+
+`cities.csv` -> `cities.xlsx`
+
+Запуск и результат:
+
+![run](../../images/lab05/csv_to_xlsx_cities.png)
+
+![result](../../images/lab05/OUT_cities_xlsx.png)
