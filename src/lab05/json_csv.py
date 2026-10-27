@@ -19,6 +19,9 @@ def json_to_csv(json_path: str | Path, csv_path: str | Path) -> None:
     if csv_path.suffix != ".csv": raise ValueError("Invalid CSV-file extension.")
     if not json_path.is_file(): raise FileNotFoundError("JSON-file does not exist.")
 
+    if json_path.stat().st_size == 0:
+        raise ValueError("JSON-file is empty.")
+
     with open(json_path, mode="r", encoding="utf-8") as json_fl:
         try:
             data = json.load(json_fl)
