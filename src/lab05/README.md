@@ -118,7 +118,7 @@ for col in ws.columns:
 
 Исходный файл:
 
-![example1.csv](../../data/samples/example1.csv)
+[example1.csv](../../data/samples/example1.csv)
 
 Запуск:
 
@@ -126,6 +126,6 @@ for col in ws.columns:
 
 Результат:
 
-![result1.xlsx](../../data/out/result1.xlsx)
+[result1.xlsx](../../data/out/result1.xlsx)
 
 ![OUT_result1.xlsx](../../images/lab05/OUT_result1_xlsx.png)
