@@ -35,4 +35,4 @@ try:
     elif args.cmd == "csv2xlsx":
         csv_to_xlsx(args.input_file, args.output_file)
     print("Конвертация успешно выполнена.")
-except Exception as e: print(f"Что-то пошло не так: {e}")
+except Exception as e: print(f"Something went wrong: {e}")
