@@ -31,7 +31,7 @@
 
 **Тест 3**
 
-Пустой csv-файл ![empty.csv](../../data/samples/empty.csv)
+Пустой csv-файл [empty.csv](../../data/samples/empty.csv)
 
 Запуск и результат:
 
@@ -39,7 +39,7 @@
 
 **Тест 4**
 
-Пустой json-файл ![empty.json](../../data/samples/empty.json)
+Пустой json-файл [empty.json](../../data/samples/empty.json)
 
 Запуск и результат:
 
@@ -47,7 +47,7 @@
 
 **Тест 5**
 
-csv-файл только с заголовком  ![only_header.csv](../../data/samples/only_header.csv)
+csv-файл только с заголовком  [only_header.csv](../../data/samples/only_header.csv)
 
 Запуск и результат:
 
