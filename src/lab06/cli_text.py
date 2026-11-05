@@ -48,4 +48,5 @@ try:
         else:
             with open(args.input_file, "r", encoding="utf-8") as fl:
                 for ln in fl: print(ln.strip())
-except Exception as e: print(f"Что-то пошло не так: {e}")
+except FileNotFoundError as e: print("No such file or directory.")
+except Exception as e: print(f"Something went wrong: {e}")
