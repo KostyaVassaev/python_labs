@@ -6,6 +6,8 @@
 import argparse
 ```
 
+---
+
 ## CLI обработчик текста
 
 ### Демонстрация
@@ -59,6 +61,8 @@ import argparse
 ![H_text_cat](../../images/lab06/H_cli_text_cat.png)
 
 ![H_text_stats](../../images/lab06/H_cli_text_stats.png)
+
+---
 
 ## CLI-конвертер
 
