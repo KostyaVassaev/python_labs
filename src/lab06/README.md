@@ -48,9 +48,9 @@ import argparse
 
 Вызовы и ошибки:
 
-![ERR_cat_not_right_arg]()
+![ERR_cat_not_right_arg](../../images/lab06/ERROR_cat_not_right_arg.png)
 
-![ERR_stats_not_right_arg]()
+![ERR_stats_not_right_arg](../../images/lab06/ERROR_stats_not_right_arg.png)
 
 ### Справка
 
