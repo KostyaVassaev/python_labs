@@ -1,124 +1,96 @@
-import timeit
 import csv
 import random
+import timeit
+from pathlib import Path
 
 from sorting import *
 from search import *
 
+from src.lib.outputting import table_print
+from src.lab04.io_txt_csv import write_csv
+
 random.seed(42)
 
-results = []
+def read_numbers(path):
+    with open(path, encoding="utf-8") as f:
+        return [int(row["value"]) for row in csv.DictReader(f)]
 
-# ==========================================
-# 1. ТЕСТ СОРТИРОВОК
-# ==========================================
-print("Запуск бенчмарка сортировок...")
-sorting_tasks = {
-    "bubble_sort": bubble_sort,
-    "insertion_sort": insertion_sort,
-    "selection_sort": selection_sort,
-    "built_in_sorted": sorted
-}
 
-sort_sizes = [1000, 10000, 100000]
-
-for n in sort_sizes:
-    data = [random.randint(0, 10**6) for _ in range(n)]
+def bench_sorts(n):
+    data = read_numbers(f"data/samples/lab07/numbers_{n}.csv")
+    rows = []
+    
+    sorting_tasks = {
+        "bubble_sort": bubble_sort,
+        "insertion_sort": insertion_sort,
+        "selection_sort": selection_sort,
+        "built_in_sorted": sorted
+    }
     
     for name, func in sorting_tasks.items():
-        if n == 100000 and name != "built_in_sorted":
+        if n == 100000 and name in ["bubble_sort", "insertion_sort", "selection_sort"]:
+            rows.append(("sort", n, name, "> 60"))
             continue
-
-        def test_sort(): return func(data)
+            
+        # Замер времени на копии исходных данных
+        t = timeit.timeit(lambda: func(data.copy()), number=1)
+        rows.append(("sort", n, name, f"{t:.6f}"))
         
-        seconds = timeit.timeit(test_sort, number=1)
-        results.append({
-            "task": "sorting",
-            "n": n,
-            "impl": name,
-            "seconds": f"{seconds:.6f}"
-        })
+    return rows
 
-# ==========================================
-# 2. ТЕСТ ПОИСКА
-# ==========================================
+
+def bench_search():
+    rows = []
+    
+    n_search = 100000
+    n_queries = 10000
+    
+    search_list = [random.randint(0, 10**6) for _ in range(n_search)]
+    queries = [random.randint(0, 10**6) for _ in range(n_queries)]
+    
+    t_linear = timeit.timeit(lambda: [linear_search(search_list, q) for q in queries], number=1)
+    rows.append(("search", n_search, "linear_search", f"{t_linear:.6f}"))
+    
+    t_sort_for_binary = timeit.timeit(lambda: sorted(search_list), number=1)
+    rows.append(("search", n_search, "binary_search_sorting", f"{t_sort_for_binary:.6f}"))
+    
+    sorted_search_list = sorted(search_list)
+    t_binary = timeit.timeit(lambda: [binary_search(sorted_search_list, q) for q in queries], number=1)
+    rows.append(("search", n_search, "binary_search", f"{t_binary:.6f}"))
+    
+    two_sum_sizes = [1000, 10000]
+    
+    for n in two_sum_sizes:
+        two_sum_data = [random.randint(0, 10**6) for _ in range(n)]
+        target = random.choice(two_sum_data) + random.choice(two_sum_data)
+        
+        if n <= 1000:
+            t_brute = timeit.timeit(lambda: two_sum_brute(two_sum_data, target), number=1)
+            rows.append(("two_sum", n, "two_sum_brute", f"{t_brute:.6f}"))
+        else:
+            rows.append(("two_sum", n, "two_sum_brute", "> 60"))
+        
+        t_fast = timeit.timeit(lambda: two_sum_fast(two_sum_data, target), number=1)
+        rows.append(("two_sum", n, "two_sum_fast", f"{t_fast:.6f}"))
+        
+    return rows
+
+
+results = []
+headers = ("task", "n", "impl", "seconds")
+
+sort_sizes = [1000, 10000, 100000]
+for size in sort_sizes:
+    print(f"Запуск бенчмарка сортировок для n = {size}...")
+    results.extend(bench_sorts(size))
+    
 print("Запуск бенчмарка поиска...")
-n_search = 100000
-n_queries = 10000
+results.extend(bench_search())
 
-search_list = [random.randint(0, 10**6) for _ in range(n_search)]
-queries = [random.randint(0, 10**6) for _ in range(n_queries)]
+table_print(results, header=headers)
 
-def test_linear():
-    for q in queries:
-        linear_search(search_list, q)
-        
-seconds_linear = timeit.timeit(test_linear, number=1)
-results.append({
-    "task": "search",
-    "n": n_search,
-    "impl": "linear_search",
-    "seconds": f"{seconds_linear:.6f}"
-})
+data_path = Path(__file__).resolve().parent.parent.parent / "data"
 
-search_list = sorted(search_list)
-
-def test_binary():
-    for q in queries:
-        binary_search(search_list, q)
-        
-seconds_binary = timeit.timeit(test_binary, number=1)
-results.append({
-    "task": "search",
-    "n": n_search,
-    "impl": "binary_search",
-    "seconds": f"{seconds_binary:.6f}"
-})
-
-# ==========================================
-# 3. ТЕСТ TWO SUM
-# ==========================================
-print("Запуск бенчмарка Two Sum...")
-two_sum_sizes = [1000, 10000]
-
-for n in two_sum_sizes:
-    two_sum_data = [random.randint(0, 10**6) for _ in range(n)]
-    target = random.randint(0, 2 * 10**6)
-    
-    if n <= 1000:
-        seconds_brute = timeit.timeit(lambda: two_sum_brute(two_sum_data, target), number=1)
-        results.append({
-            "task": "two_sum",
-            "n": n,
-            "impl": "two_sum_brute",
-            "seconds": f"{seconds_brute:.6f}"
-        })
-    
-    seconds_fast = timeit.timeit(lambda: two_sum_fast(two_sum_data, target), number=1)
-    results.append({
-        "task": "two_sum",
-        "n": n,
-        "impl": "two_sum_fast",
-        "seconds": f"{seconds_fast:.6f}"
-    })
-
-import sys
-from pathlib import Path
-
-current_dir = Path(__file__).resolve().parent
-project_root = current_dir.parent.parent
-src_path = project_root / "src"
-data_path = project_root / "data"
-sys.path.append(str(src_path))
-sys.path.append(str(data_path))
-
-from lib.outputting import table_print
-from lab04.io_txt_csv import write_csv
-
-table_print(results, header=("task", "n", "impl", "seconds"))
-
-norm_res = []
-for row in results:
-    norm_res.append([row.get(k, "") for k in results[0].keys()])
-csv_path = Path(f"{data_path}/lab07/bench.csv")
-write_csv(norm_res, csv_path, ("task", "n", "impl", "seconds"))
+csv_path = Path(f"{str(data_path)}/lab07/bench.csv")
+write_csv(results, csv_path, headers)
+print(f"\nРезультаты успешно сохранены в {csv_path}")
