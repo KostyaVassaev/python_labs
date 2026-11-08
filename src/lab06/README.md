@@ -109,29 +109,110 @@ import argparse
 
 Вызов:
 
-![B2_terminal]()
+![B2_terminal](../../images/lab06/B2_json2csv_terminal.png)
 
-Исходный CSV-файл:
-```csv
+Исходный JSON-файл:
+```json
+[
+  {
+    "model": "iPhone 15",
+    "storage_gb": 128,
+    "color": "Black"
+  },
+  {
+    "model": "Galaxy S24",
+    "storage_gb": 256,
+    "color": "Gray"
+  },
+  {
+    "model": "Pixel 8",
+    "storage_gb": 128,
+    "color": "Hazel"
+  },
+  {
+    "model": "Xiaomi 14",
+    "storage_gb": 512,
+    "color": "Green"
+  },
+  {
+    "model": "OnePlus 12",
+    "storage_gb": 256,
+    "color": "Silky Black"
+  }
+]
 ```
 
 Итог:
 
-![B2_result]()
+![B2_result](../../images/lab06/B2_json2csv_result.png)
 
 **Тест 3:**
 
 Вызов:
 
-![B3_terminal]()
+![B3_terminal](../../images/lab06/B3_csv2json_terminal.png)
 
 Исходный CSV-файл:
 ```csv
+name,age,city
+Alice,22,SPB
+Bob,25,Moscow
+Carlos,30,Kazan
+Dana,21,SPB
+Andrey,27,Novosibirsk
 ```
 
 Итог:
 
-![B3_result]()
+```json
+[
+  {
+    "name": "Alice",
+    "age": 22,
+    "city": "SPB"
+  },
+  {
+    "name": "Bob",
+    "age": 25,
+    "city": "Moscow"
+  },
+  {
+    "name": "Carlos",
+    "age": 30,
+    "city": "Kazan"
+  },
+  {
+    "name": "Dana",
+    "age": 21,
+    "city": "SPB"
+  },
+  {
+    "name": "Andrey",
+    "age": 27,
+    "city": "Novosibirsk"
+  }
+]
+```
+
+**Тест 4:**
+
+Вызов:
+
+![B4_terminal](../../images/lab06/B4_csv2xlsx_terminal.png)
+
+Исходный CSV-файл:
+```csv
+city,country,population
+SPB,Russia,5384342
+Moscow,Russia,13010112
+Kazan,Russia,1306953
+Novosibirsk,Russia,1620162
+Yekaterinburg,Russia,1493749
+```
+
+Итог:
+
+![B4_result](../../images/lab06/B4_csv2xlsx_result.png)
 
 ### Обработка ошибок
 
