@@ -31,7 +31,7 @@ table_flag = agreement('Вывод топа в виде таблицы?') #вы�
 print('\nТоп-5:')
 if table_flag:
     from lib.outputting import table_print
-    table_print(top_5, ("слово", "частота"))
+    table_print(top_5, header=("слово", "частота"))
 
 else:
     for word, cnt in top_5: print(f"{word}: {cnt}")
