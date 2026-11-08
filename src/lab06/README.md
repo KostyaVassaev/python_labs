@@ -230,6 +230,12 @@ Yekaterinburg,Russia,1493749
 
 Вызовы и ошибки:
 
+![ERR_json2csv_not_right_arg](../../images/lab06/ERROR_json2csv_not_right_arg.png)
+
+![ERR_csv2json_not_right_arg](../../images/lab06/ERROR_csv2json_not_right_arg.png)
+
+![ERR_csv2xlsx_not_right_arg](../../images/lab06/ERROR_csv2xlsx_not_right_arg.png)
+
 ### Справка
 
 ![H_json2csv](../../images/lab06/H_json2csv.png)
