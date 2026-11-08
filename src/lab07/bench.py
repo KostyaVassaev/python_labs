@@ -1,13 +1,20 @@
 import csv
 import random
 import timeit
+import sys
 from pathlib import Path
 
 from sorting import *
 from search import *
 
-from src.lib.outputting import table_print
-from src.lab04.io_txt_csv import write_csv
+current_dir = Path(__file__).resolve().parent
+project_root = current_dir.parent.parent
+src_path = project_root / "src"
+data_path = project_root / "data"
+sys.path.append(str(src_path))
+
+from lib.outputting import table_print
+from lab04.io_txt_csv import write_csv
 
 random.seed(42)
 
@@ -87,8 +94,6 @@ print("Запуск бенчмарка поиска...")
 results.extend(bench_search())
 
 table_print(results, header=headers)
-
-data_path = Path(__file__).resolve().parent.parent.parent / "data"
 
 csv_path = Path(f"{str(data_path)}/lab07/bench.csv")
 write_csv(results, csv_path, headers)
