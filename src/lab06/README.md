@@ -12,19 +12,45 @@ import argparse
 
 **Тест 1**
 
+Исходный файл: [people.csv](../../data/samples/people.csv)
+
 ![A1_cat](../../images/lab06/A1_cat.png)
 
 **Тест 2**
 
+Исходный файл: [people.csv](../../data/samples/people.csv)
+
 ![A2_stats](../../images/lab06/A2_stats.png)
+
+**Тест 3:**
+
+Исходный файл: [input1.txt](../../data/samples/input1.txt)
+
+![A3_cat](../../images/lab06/A3_cat.png)
+
+**Тест 4:**
+
+Исходный файл: [input1.txt](../../data/samples/input1.txt)
+
+![A4_stats](../../images/lab06/A4_stats.png)
 
 ### Обработка ошибок
 
 **Кейс 1: файл не существует**
 
+Вызовы и ошибки:
+
 ![ERR_cat_no_file](../../images/lab06/ERROR_cat_no_such_file.png)
 
 ![ERR_stats_no_file](../../images/lab06/ERROR_stats_no_such_file.png)
+
+**Кейс 2: неверные аргументы**
+
+Вызовы и ошибки:
+
+![ERR_cat_not_right_arg]()
+
+![ERR_stats_not_right_arg]()
 
 ### Справка
 
@@ -78,6 +104,34 @@ import argparse
 Итог:
 
 ![B1_result](../../images/lab06/B1_json2csv_result.png)
+
+**Тест 2:**
+
+Вызов:
+
+![B2_terminal]()
+
+Исходный CSV-файл:
+```csv
+```
+
+Итог:
+
+![B2_result]()
+
+**Тест 3:**
+
+Вызов:
+
+![B3_terminal]()
+
+Исходный CSV-файл:
+```csv
+```
+
+Итог:
+
+![B3_result]()
 
 ### Обработка ошибок
 
