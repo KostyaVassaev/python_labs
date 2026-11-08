@@ -1,5 +1,18 @@
-def table_print(rows: list[list | tuple], header: tuple[str, ...] | None = None) -> None:
+def table_print(rows: list[list | tuple | dict] | dict, dict_keys: tuple[str, ...] | None = None, header: tuple[str, ...] | None = None) -> None:
     if not rows and not header: return
+
+    normalized_rows = []
+
+    if isinstance(rows, dict):
+        normalized_rows = [[k, v] for k, v in rows.items()]
+    elif isinstance(rows[0], dict):
+        if not dict_keys: dict_keys = tuple(rows[0].keys())
+        for row_dict in rows:
+            normalized_rows.append([row_dict.get(k, "") for k in header])
+    else:
+        normalized_rows = [list(row) for row in rows]
+
+    rows = normalized_rows
 
     num_columns = len(header) if header else (len(rows[0]) if rows else 0)
     if num_columns == 0: return
