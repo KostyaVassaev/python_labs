@@ -31,8 +31,7 @@ def bench_sorts(n):
         if n == 100000 and name in ["bubble_sort", "insertion_sort", "selection_sort"]:
             rows.append(("sort", n, name, "> 60"))
             continue
-            
-        # Замер времени на копии исходных данных
+        
         t = timeit.timeit(lambda: func(data.copy()), number=1)
         rows.append(("sort", n, name, f"{t:.6f}"))
         
