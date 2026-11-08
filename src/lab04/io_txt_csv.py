@@ -3,11 +3,6 @@ import csv
 from pathlib import Path
 from typing import Iterable, Sequence
 
-current_dir = Path(__file__).resolve().parent
-project_root = current_dir.parent.parent
-src_path = project_root / "src"
-sys.path.append(str(src_path))
-
 def ensure_parent_dir(path: str | Path) -> None:
     Path(path).parent.mkdir(parents=True, exist_ok=True)
 

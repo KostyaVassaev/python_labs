@@ -36,7 +36,7 @@ try:
             print(f"Всего слов: {len(data)}")
             print(f"Уникальных слов: {len(freq)}")
             print(f"\nТоп-{args.top}:")
-            table_print(top_n(freq, args.top), ("слово", "частота"))
+            table_print(top_n(freq, args.top), header=("слово", "частота"))
     
     elif args.cmd == "cat":
         if args.n:
