@@ -43,6 +43,7 @@ def student_age(rec: dict, today=None) -> int:
     else: raise ValueError("Wrong date format of today date (expects 'YYYY-MM-DD')")
     
     bdate = date.fromisoformat(rec[STUDENT_FIELDS[1]])
+    if bdate.year > today.year: raise ValueError("Wrong birthdate date: year of birth later than today")
     age = today.year - bdate.year
     if (today.month, today.day) < (bdate.month, bdate.day): age -= 1
 

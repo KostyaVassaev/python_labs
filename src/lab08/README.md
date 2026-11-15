@@ -95,6 +95,7 @@ def student_age(rec: dict, today=None) -> int:
     else: raise ValueError("Wrong date format of today date (expects 'YYYY-MM-DD')")
     
     bdate = date.fromisoformat(rec[STUDENT_FIELDS[1]])
+    if bdate.year > today.year: raise ValueError("Wrong birthdate date: year of birth later than today")
     age = today.year - bdate.year
     if (today.month, today.day) < (bdate.month, bdate.day): age -= 1
 
@@ -287,3 +288,21 @@ def students_from_csv(path: str | Path) -> list[dict]:
 ## Демонстрация работы
 
 ### Тест 1: создание, форматирование и обновление записей (`models.py`)
+
+### Тест 2: корректные записи туда-обратно (`serialize.py`)
+
+### Тест 3: чтение из CSV (`students_from_csv`)
+
+---
+
+## Обработка ошибок
+
+### Кейс 1: запись с неверной датой (2003-02-30 и дата в будущем)
+
+### Кейс 2: запись с некорректным gpa
+
+1. Выход за диапазон
+
+2. Недопустимый тип для gpa
+
+### Кейс 3: чтение файла с битыми записями (`students_bad.json`, политика `skip`)
