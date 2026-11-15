@@ -170,13 +170,19 @@ def student_from_dict(d: dict) -> dict:
 ```py
 def students_to_json(students: list[dict], path: str | Path) -> None:
     data = [student_to_dict(s) for s in students]
+    ensure_parent_dir(path)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def students_from_json(path: str | Path) -> list[dict]:
-    with open(path, "r", encoding="utf-8") as f:
-        raw_data = json.load(f)
-
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            raw_data = json.load(f)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"The file at path {path} was not found or does not exist.")
+    except Exception as e:
+        raise f"Error: {e}"
+    
     if not isinstance(raw_data, list):
         raise ValueError("The root element of the JSON must be an array.")
 
@@ -242,8 +248,13 @@ def update_student(rec: dict, **fields) -> dict:
 
 ```py
 def students_from_csv(path: str | Path) -> list[dict]:
-    with open(path, "r", encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
+    try:
+        with open(path, "r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"The file at path {path} was not found or does not exist.")
+    except Exception as e:
+        raise f"Error: {e}"
     
     valid_students = []
     skipped_errors = []
