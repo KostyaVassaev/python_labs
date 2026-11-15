@@ -10,7 +10,7 @@ import csv
 
 ---
 
-## Задание A — модуль `src/lab08/models.py`
+## Задание A - модуль `src/lab08/models.py`
 
 ### Структура записи `Student`
 
@@ -76,11 +76,11 @@ def validate_student(rec: dict) -> None:
     except (ValueError, TypeError): raise ValueError("gpa field must be a number between 0 and 5")
 ```
 
-`set(rec.keys()) != set(STUDENT_FIELDS)` — гарантирует, что в словаре присутствуют ровно 4 нужных ключа без лишних или пропущенных полей.
+`set(rec.keys()) != set(STUDENT_FIELDS)` - гарантирует, что в словаре присутствуют ровно 4 нужных ключа без лишних или пропущенных полей.
 
-`date.fromisoformat()` — проверяет не только соответствие шаблону `YYYY-MM-DD`, но и реальное существование даты в календаре (например, отсекает `2003-02-30`).
+`date.fromisoformat()` - проверяет не только соответствие шаблону `YYYY-MM-DD`, но и реальное существование даты в календаре (например, отсекает `2003-02-30`).
 
-`isinstance(gpa, bool)` — отдельная проверка необходима, так как в Python логический тип `bool` является подклассом `int` (`True == 1`, `False == 0`).
+`isinstance(gpa, bool)` - отдельная проверка необходима, так как в Python логический тип `bool` является подклассом `int` (`True == 1`, `False == 0`).
 
 ### Функция `student_age`
 
@@ -161,7 +161,7 @@ def student_from_dict(d: dict) -> dict:
 
 ---
 
-## Задание B — модуль `src/lab08/serialize.py`
+## Задание B - модуль `src/lab08/serialize.py`
 
 ### Функции `students_to_json` и `students_from_json`
 
@@ -198,7 +198,7 @@ def students_from_json(path: str | Path) -> list[dict]:
     return valid_students
 ```
 
-`ensure_ascii=False` — сохраняет кириллицу в читаемом виде.
+`ensure_ascii=False` - сохраняет кириллицу в читаемом виде.
 
 ### Политика обработки битых записей (`skip`)
 
