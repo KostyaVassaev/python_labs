@@ -1,13 +1,13 @@
 import json, csv
 import sys
 from pathlib import Path
-from models import student_to_dict, student_from_dict, STUDENT_FIELDS
 
 current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parent.parent
 src_path = project_root / "src"
 sys.path.append(str(src_path))
 
+from lab08.models import student_to_dict, student_from_dict, STUDENT_FIELDS
 from lib.pathwork import ensure_parent_dir
 
 def students_to_json(students: list[dict], path: str | Path) -> None:
