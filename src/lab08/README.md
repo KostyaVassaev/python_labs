@@ -295,7 +295,17 @@ def students_from_csv(path: str | Path) -> list[dict]:
 
 ### Тест 1: создание, форматирование и обновление записей (`models.py`)
 
+![A1_terminal](../../images/lab08/A1_models_demo.png)
+
 ### Тест 2: корректные записи JSON туда-обратно (`serialize.py`)
+
+Исходный файл: [students_input.json](../../data/lab08/students_input.json)
+
+Вызов:
+
+![B1_terminal](../../images/lab08/B1_json_readwrite.png)
+
+Выходной файл: [students_output.json](../../data/lab08/students_output.json)
 
 ### Тест 3: чтение из CSV (`students_from_csv` в `serialize.py`)
 
