@@ -59,11 +59,17 @@ def validate_student(rec: dict) -> None:
 
     if set(rec.keys()) != set(STUDENT_FIELDS): raise ValueError("Invalid set of write keys")
 
-    if not isinstance(rec[STUDENT_FIELDS[0]], str) or not rec[STUDENT_FIELDS[0]].strip():
+    if not isinstance(rec[STUDENT_FIELDS[0]], str):
         raise ValueError("The fio field must be a non-empty string")
-    if not isinstance(rec[STUDENT_FIELDS[2]], str) or not rec[STUDENT_FIELDS[2]].strip():
+    elif not rec[STUDENT_FIELDS[0]].strip():
+        raise ValueError("The fio field must be a non-empty string")
+    if not isinstance(rec[STUDENT_FIELDS[2]], str):
         raise ValueError("The group field must be a non-empty string")
-    if not isinstance(rec[STUDENT_FIELDS[1]], str) or not rec[STUDENT_FIELDS[1]].strip():
+    elif not rec[STUDENT_FIELDS[2]].strip():
+        raise ValueError("The group field must be a non-empty string")
+    if not isinstance(rec[STUDENT_FIELDS[1]], str):
+        raise ValueError("The datebirth field must be a non-empty string")
+    elif not rec[STUDENT_FIELDS[1]].strip():
         raise ValueError("The datebirth field must be a non-empty string")
 
     try: date.fromisoformat(rec[STUDENT_FIELDS[1]])
@@ -289,9 +295,9 @@ def students_from_csv(path: str | Path) -> list[dict]:
 
 ### Тест 1: создание, форматирование и обновление записей (`models.py`)
 
-### Тест 2: корректные записи туда-обратно (`serialize.py`)
+### Тест 2: корректные записи JSON туда-обратно (`serialize.py`)
 
-### Тест 3: чтение из CSV (`students_from_csv`)
+### Тест 3: чтение из CSV (`students_from_csv` в `serialize.py`)
 
 ---
 
@@ -306,3 +312,5 @@ def students_from_csv(path: str | Path) -> list[dict]:
 2. Недопустимый тип для gpa
 
 ### Кейс 3: чтение файла с битыми записями (`students_bad.json`, политика `skip`)
+
+Файл: [students_bad.json](../../data/lab08/students_bad.json)
