@@ -309,6 +309,12 @@ def students_from_csv(path: str | Path) -> list[dict]:
 
 ### Тест 3: чтение из CSV (`students_from_csv` в `serialize.py`)
 
+Исходный файл: [students.csv](../../data/lab08/students.csv)
+
+Вызов:
+
+![C1_terminal](../../images/lab08/C1_csv_import.png)
+
 ---
 
 ## Обработка ошибок
