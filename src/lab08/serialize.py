@@ -46,26 +46,27 @@ def students_from_json(path: str | Path) -> list[dict]:
     return valid_students
 
 def students_from_csv(path: str | Path) -> list[dict]:
+    valid_students = []
+    skipped_errors = []
+
     try:
         with open(path, "r", encoding="utf-8", newline="") as f:
             reader = csv.DictReader(f)
+
+            if reader.fieldnames is None or not set(STUDENT_FIELDS).issubset(set(reader.fieldnames)):
+                raise ValueError(f"Required headers are missing from the CSV. Expected: {', '.join(STUDENT_FIELDS)}")
+
+            for row_num, row in enumerate(reader, start=2):
+                try:
+                    student = student_from_dict(row)
+                    valid_students.append(student)
+                except ValueError as e:
+                    skipped_errors.append(f"Recording №{row_num}: {e}")
+
     except FileNotFoundError:
         raise FileNotFoundError(f"The file at path {path} was not found or does not exist.")
     except Exception as e:
         raise f"Error: {e}"
-    
-    valid_students = []
-    skipped_errors = []
-
-    if reader.fieldnames is None or not set(STUDENT_FIELDS).issubset(set(reader.fieldnames)):
-        raise ValueError(f"Required headers are missing from the CSV. Expected: {', '.join(STUDENT_FIELDS)}")
-
-    for row_num, row in enumerate(reader, start=2):
-            try:
-                student = student_from_dict(row)
-                valid_students.append(student)
-            except ValueError as e:
-                skipped_errors.append(f"Recording №{row_num}: {e}")
 
     if skipped_errors:
         print(f"Missed broken records: {len(skipped_errors)}")
