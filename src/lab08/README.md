@@ -72,14 +72,19 @@ def validate_student(rec: dict) -> None:
     elif not rec[STUDENT_FIELDS[1]].strip():
         raise ValueError("The datebirth field must be a non-empty string")
 
-    try: date.fromisoformat(rec[STUDENT_FIELDS[1]])
-    except (ValueError, TypeError): raise ValueError("Wrong date format of birthdate (expects 'YYYY-MM-DD')")
+    birthdate = rec[STUDENT_FIELDS[1]]
+    
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", birthdate):
+        raise ValueError("Wrong date format of birthdate (expects 'YYYY-MM-DD')")
+
+    try: date.fromisoformat(birthdate)
+    except ValueError as e: raise ValueError(f"Invalid calendar date: {e}") from None
 
     gpa = rec[STUDENT_FIELDS[3]]
     if isinstance(gpa, bool) or not isinstance(gpa, (int, float)):
         raise ValueError("gpa field must be a number")
     try: 0 <= float(gpa) <= 5
-    except (ValueError, TypeError): raise ValueError("gpa field must be a number between 0 and 5")
+    except (ValueError, TypeError): raise ValueError("gpa field must be a number between 0 and 5") from None
 ```
 
 `set(rec.keys()) != set(STUDENT_FIELDS)` - гарантирует, что в словаре присутствуют ровно 4 нужных ключа без лишних или пропущенных полей.
