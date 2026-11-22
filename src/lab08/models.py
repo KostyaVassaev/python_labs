@@ -21,15 +21,15 @@ def validate_student(rec: dict) -> None:
     if set(rec.keys()) != set(STUDENT_FIELDS): raise ValueError("Invalid set of write keys")
 
     if not isinstance(rec[STUDENT_FIELDS[0]], str):
-        raise ValueError("The fio field must be a non-empty string")
+        raise TypeError("The fio field must be a non-empty string")
     elif not rec[STUDENT_FIELDS[0]].strip():
         raise ValueError("The fio field must be a non-empty string")
     if not isinstance(rec[STUDENT_FIELDS[2]], str):
-        raise ValueError("The group field must be a non-empty string")
+        raise TypeError("The group field must be a non-empty string")
     elif not rec[STUDENT_FIELDS[2]].strip():
         raise ValueError("The group field must be a non-empty string")
     if not isinstance(rec[STUDENT_FIELDS[1]], str):
-        raise ValueError("The datebirth field must be a non-empty string")
+        raise TypeError("The datebirth field must be a non-empty string")
     elif not rec[STUDENT_FIELDS[1]].strip():
         raise ValueError("The datebirth field must be a non-empty string")
 
