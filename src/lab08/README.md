@@ -77,8 +77,11 @@ def validate_student(rec: dict) -> None:
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", birthdate):
         raise ValueError("Wrong date format of birthdate (expects 'YYYY-MM-DD')")
 
-    try: date.fromisoformat(birthdate)
+    try: bdate = date.fromisoformat(birthdate)
     except ValueError as e: raise ValueError(f"Invalid calendar date: {e}") from None
+
+    if bdate > date.today():
+        raise ValueError("Birthdate cannot be in the future")
 
     gpa = rec[STUDENT_FIELDS[3]]
     if isinstance(gpa, bool) or not isinstance(gpa, (int, float)):
@@ -102,8 +105,12 @@ def student_age(rec: dict, today=None) -> int:
     validate_student(rec)
 
     if today == None: today = date.today()
-    elif isinstance(today, str): today = date.fromisoformat(today)
-    else: raise ValueError("Wrong date format of today date (expects 'YYYY-MM-DD')")
+    elif isinstance(today, str):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", today):
+            raise ValueError("Wrong date format of birthdate (expects 'YYYY-MM-DD')")
+        try: today = date.fromisoformat(today)
+        except ValueError as e: raise ValueError(f"Invalid calendar date: {e}") from None
+    else: raise TypeError("Date of today must be a string (format 'YYYY-MM-DD')")
     
     bdate = date.fromisoformat(rec[STUDENT_FIELDS[1]])
     if bdate.year > today.year: raise ValueError("Wrong birthdate date: year of birth later than today")
