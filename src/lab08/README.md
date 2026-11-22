@@ -350,7 +350,11 @@ def students_from_csv(path: str | Path) -> list[dict]:
 
 1. Недопустимый тип для gpa
 
-2. Выход за диапазон
+![wrong gpa type](../../images/lab08/ERR_wrong_gpa_type.png)
+
+2. Выход за диапазон от 0 до 5
+
+![invalid gpa range]()
 
 ### Кейс 3: чтение файла с битыми записями (`students_bad.json`, политика `skip`)
 
