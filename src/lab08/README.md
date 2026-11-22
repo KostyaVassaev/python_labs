@@ -355,3 +355,7 @@ def students_from_csv(path: str | Path) -> list[dict]:
 ### Кейс 3: чтение файла с битыми записями (`students_bad.json`, политика `skip`)
 
 Файл: [students_bad.json](../../data/lab08/students_bad.json)
+
+Вызов и ошибка:
+
+![students_bad terminal](../../images/lab08/ERR_bad_students_json_test.png)
