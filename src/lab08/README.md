@@ -334,6 +334,18 @@ def students_from_csv(path: str | Path) -> list[dict]:
 
 ### Кейс 1: запись с неверной датой (2003-02-30 и дата в будущем)
 
+1. Дата в неверном формате
+
+![invalid date format](../../images/lab08/ERR_invalid_date_format.png)
+
+2. Несуществующая дата
+
+![invalid calendar date](../../images/lab08/ERR_invalid_calendar_date.png)
+
+3. Дата в будущем
+
+![future date of datebirth](../../images/lab08/ERR_date_in_the_future.png)
+
 ### Кейс 2: запись с некорректным gpa
 
 1. Выход за диапазон
