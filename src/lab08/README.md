@@ -86,7 +86,9 @@ def validate_student(rec: dict) -> None:
     gpa = rec[STUDENT_FIELDS[3]]
     if isinstance(gpa, bool) or not isinstance(gpa, (int, float)):
         raise ValueError("gpa field must be a number")
-    try: 0 <= float(gpa) <= 5
+    try:
+        if not 0 <= float(gpa) <= 5:
+            raise ValueError
     except (ValueError, TypeError): raise ValueError("gpa field must be a number between 0 and 5") from None
 ```
 
