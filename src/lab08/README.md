@@ -356,7 +356,7 @@ def students_from_csv(path: str | Path) -> list[dict]:
 
 2. Выход за диапазон от 0 до 5
 
-![invalid gpa range]()
+![invalid gpa range](../../images/lab08/ERR_gpa_out_of_range.png)
 
 ### Кейс 3: чтение файла с битыми записями (`students_bad.json`, политика `skip`)
 
