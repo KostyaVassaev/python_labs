@@ -113,6 +113,9 @@ def student_from_dict(d: dict) -> dict:
     return extracted
 
 def update_student(rec: dict, **fields) -> dict:
+    try: validate_student(rec)
+    except Exception as e: raise f"Something wrong with input student: {e}"
+
     for key in fields:
         if key not in STUDENT_FIELDS:
             raise KeyError(f"Unknown field to update: {key}")
