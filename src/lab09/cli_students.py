@@ -112,4 +112,5 @@ try:
                 print(f"  {st['fio']} - {st['gpa']}")
 
 except Exception as e:
-    raise f"Ошибка: {e}" from None
+    print(f"Ошибка: {e}", file=sys.stderr)
+    sys.exit(1)
