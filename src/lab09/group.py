@@ -87,3 +87,32 @@ def update_student(path: str | Path, fio: str, **fields) -> bool:
             return True
 
     return False
+
+def stats(path: str | Path) -> dict:
+    path = Path(path)
+    students = load_students(path)
+    if not students:
+        return {
+            "count": 0,
+            "min_gpa": None,
+            "max_gpa": None,
+            "avg_gpa": None,
+            "groups": {},
+            "top_5_students": [],
+        }
+
+    gpas = [s["gpa"] for s in students]
+    groups: dict[str, int] = {}
+    for s in students:
+        groups[s["group"]] = groups.get(s["group"], 0) + 1
+
+    top_5 = sorted(students, key=lambda s: s["gpa"], reverse=True)[:5]
+
+    return {
+        "count": len(students),
+        "min_gpa": min(gpas),
+        "max_gpa": max(gpas),
+        "avg_gpa": round(sum(gpas) / len(gpas), 2),
+        "groups": groups,
+        "top_5_students": [{"fio": s["fio"], "gpa": s["gpa"]} for s in top_5],
+    }
